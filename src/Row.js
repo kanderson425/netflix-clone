@@ -28,11 +28,11 @@ function Row({ title, fetchURL, isLargeRow }) {
   };
 
   const handleClick = (movie) => {
-    console.log(movie.title);
+    console.log(movie);
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(movie?.title || "")
+      movieTrailer(movie?.title || movie?.name || "")
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
@@ -55,7 +55,7 @@ function Row({ title, fetchURL, isLargeRow }) {
             src={`${base_url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
-            alt={movie.name}
+            alt={movie.original_name}
           />
         ))}
       </div>
